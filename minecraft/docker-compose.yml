@@ -10,7 +10,7 @@ services:
       - "/mnt/docker-data/minecraft:/data:rw"
     environment:
       - "EULA=TRUE"
-      - "MEMORY=9G"
+      - "MEMORY=6G"
     tty: true
     stdin_open: true
     restart: unless-stopped
