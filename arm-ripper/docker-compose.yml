@@ -1,0 +1,17 @@
+version: '3'
+services:
+  arm-ripper:
+    container_name: arm-ripper
+    image: "automaticrippingmachine/automatic-ripping-machine:2.6.60"
+    restart: unless-stopped
+    ports:
+      - "8001:8080"
+    environment:
+      - "ARM_UID=1000"
+      - "ARM_GID=1000"
+    privileged: true
+    volumes:
+      - "/mnt/docker-data/arm-ripper/home:/home/arm"
+      - "/mnt/docker-data/arm-ripper/home/config:/etc/arm/config"
+    devices:
+      - "/dev/sr0:/dev/sr0"
