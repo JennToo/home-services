@@ -12,6 +12,10 @@ services:
     privileged: true
     volumes:
       - "/mnt/docker-data/arm-ripper/home:/home/arm"
-      - "/mnt/docker-data/arm-ripper/home/config:/etc/arm/config"
+      - "/mnt/docker-data/arm-ripper/config:/etc/arm/config"
+      - "/mnt/docker-data/arm-ripper/home/logs:/home/arm/logs"
+      - "/mnt/docker-data/arm-ripper/home/Music:/home/arm/Music"
+      - "/mnt/docker-data/arm-ripper/home/media:/home/arm/media"
     devices:
       - "/dev/sr0:/dev/sr0"
+      - "/dev/sr1:/dev/sr1"
