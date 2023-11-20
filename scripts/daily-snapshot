@@ -1,0 +1,18 @@
+#!/bin/bash
+
+set -eux
+
+TODAY_SNAPSHOT="pool-party@daily-$(date +%Y%m%d)"
+KEEP="60"
+
+if zfs list -t snapshot -H -o name pool-party | grep "$TODAY_SNAPSHOT"
+then
+    echo "Snapshot is already created $TODAY_SNAPSHOT"
+else
+    zfs snapshot -r "$TODAY_SNAPSHOT"
+fi
+
+while read SNAPSHOTS_TO_REMOVE
+do
+    zfs remove -r "$SNAPSHOTS_TO_REMOVE"
+done < <(zfs list -t snapshot -H -o name pool-party | grep "@daily" | sort | tail -n "+$KEEP")

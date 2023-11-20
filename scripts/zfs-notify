@@ -1,0 +1,19 @@
+#!/bin/bash
+
+BAD=0
+
+if ! zpool status pool-party | grep "state: ONLINE"
+then
+    BAD=1
+fi
+
+if ! zpool status pool-party | grep "errors: No known data errors"
+then
+    BAD=1
+fi
+
+if [ $BAD = 1 ]
+then
+    zpool status pool-party 2>&1 | \
+        /home/jwilcox/virtualenvs/scripts/bin/notify "ZFS pool error"
+fi

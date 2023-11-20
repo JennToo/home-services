@@ -1,0 +1,19 @@
+#!/bin/bash
+
+set -eux
+
+PARENT_DISK="/dev/disk/by-id/usb-WD_easystore_264D_324A4A483759555A-0:0"
+BASE_DISK="/dev/disk/by-id/usb-WD_easystore_264D_324A4A483759555A-0:0-part1"
+CRYPT_LABEL="kiddie-pool-crypt"
+ZFS_POOL="kiddie-pool"
+
+cryptsetup luksOpen "$BASE_DISK" "$CRYPT_LABEL"
+# TODO: zfs import
+TODAY_SNAPSHOT="pool-party@$(date +%Y%m%d)"
+
+# TODO
+
+zpool export "$ZFS_POOL"
+cryptsetup luksClose "$CRYPT_LABEL"
+
+udisksctl power-off -b "$PARENT_DISK"

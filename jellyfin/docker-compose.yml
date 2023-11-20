@@ -14,3 +14,8 @@ services:
       - JELLYFIN_PublishedServerUrl=http://files.home.nitori.org
     extra_hosts:
       - "host.docker.internal:host-gateway"
+    # Enable hardware transcoding
+    group_add:
+      - "109"
+    devices:
+      - /dev/dri/renderD128:/dev/dri/renderD128
