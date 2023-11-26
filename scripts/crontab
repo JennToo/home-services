@@ -2,3 +2,5 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
 00 3  * * *  root  /home/jwilcox/repo/home-services/scripts/daily-snapshot 2>&1 | /usr/bin/logger -t zfs_daily_snapshot
 35 2  * * *  root  /home/jwilcox/repo/home-services/scripts/zfs-notify 2>&1 | /usr/bin/logger -t zfs_daily_check
+00 3 * * sat  root /home/jwilcox/virtualenvs/scripts/bin/notify "Change patches"
+00 12 * * tue  root /home/jwilcox/virtualenvs/scripts/bin/notify "Change patches"
