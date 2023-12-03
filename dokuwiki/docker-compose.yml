@@ -1,0 +1,14 @@
+version: '3.5'
+services:
+  dokuwiki:
+    image: lscr.io/linuxserver/dokuwiki:latest
+    container_name: dokuwiki
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Chicago
+    volumes:
+      - /mnt/docker-data/dokuwiki/config:/config
+    restart: 'unless-stopped'
+    ports:
+      - 8010:80
