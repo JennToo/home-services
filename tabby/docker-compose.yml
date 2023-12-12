@@ -1,0 +1,15 @@
+version: '3.5'
+services:
+  tabby:
+    image: tabbyml/tabby:20231211
+    container_name: tabby
+    command: serve --model TabbyML/DeepseekCoder-6.7B --device cpu
+    user: 1000:1000
+    init: true
+    environment:
+      - LLAMA_CPP_N_THREADS=8
+    volumes:
+      - /mnt/docker-data/tabby/data:/data
+    restart: 'unless-stopped'
+    ports:
+      - 8011:8080
