@@ -1,0 +1,17 @@
+version: '3.5'
+services:
+  freshrss:
+    image: freshrss/freshrss:1.22.1
+    container_name: freshrss
+    environment:
+      - TZ=America/Chicago
+      - "CRON_MIN=1,31"
+    volumes:
+      - /mnt/docker-data/fresh-rss/data:/var/www/FreshRSS/data
+      - /mnt/docker-data/fresh-rss/extensions:/var/www/FreshRSS/extensions
+    restart: 'unless-stopped'
+    ports:
+      - 8012:80
+    logging:
+      options:
+        max-size: 10m
