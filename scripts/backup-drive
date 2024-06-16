@@ -8,10 +8,10 @@ CRYPT_LABEL="kiddie-pool-crypt"
 ZFS_POOL="kiddie-pool"
 
 cryptsetup luksOpen "$BASE_DISK" "$CRYPT_LABEL"
-# TODO: zfs import
-TODAY_SNAPSHOT="pool-party@$(date +%Y%m%d)"
+zpool import "$ZFS_POOL" -d /dev/disk/by-id
+exit 1
 
-# TODO
+# TODO: Find the latest local snapshot and latest remote snapshot. ZFS send the diff
 
 zpool export "$ZFS_POOL"
 cryptsetup luksClose "$CRYPT_LABEL"
